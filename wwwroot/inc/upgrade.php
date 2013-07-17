@@ -191,6 +191,16 @@ particular device list using a RackCode filter. The default value
 servers and "telnet://switch.fqdn" for network switches.
 ENDOFTEXT
 ,
+	'0.21.0' => <<<ENDOFTEXT
+0.20.6 uses database triggers for consistency measures.  The database
+user account must have the 'TRIGGER' privilege, which was introduced in
+MySQL 5.1.7.
+
+Cable paths can be traced and displayed in a graphical format. This requires
+the Image_GraphViz PEAR module (http://pear.php.net/package/Image_GraphViz).
+ENDOFTEXT
+,
+
 );
 
 // At the moment we assume, that for any two releases we can
@@ -1434,7 +1444,7 @@ BEGIN
   END IF;
 END;
 ";
-			$query[] = "UPDATE Config SET varvalue = '0.21.0' WHERE varname = 'DB_VERSION'";
+			$query[] = "UPDATE Config SET varvalue = '0.20.6' WHERE varname = 'DB_VERSION'";
 			break;
 		case 'dictionary':
 			$query = reloadDictionary();
