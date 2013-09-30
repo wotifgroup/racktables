@@ -741,7 +741,7 @@ function editPortForObject ()
 		assertStringArg ('reservation_comment', TRUE);
 		genericAssertion ('l2address', 'l2address0');
 		genericAssertion ('name', 'string');
-		commitUpdatePort ($sic['object_id'], $sic['port_id'], $sic['name'], $sic['port_type_id'], $sic['label'], $sic['l2address'], $sic['reservation_comment']);
+		commitUpdatePort ($sic['port_id'], $sic['name'], $sic['port_type_id'], $sic['label'], $sic['l2address'], $sic['reservation_comment']);
 	}
 	if (array_key_exists ('cable', $_REQUEST))
 	{
@@ -849,7 +849,7 @@ http://www.cisco.com/en/US/products/hw/routers/ps274/products_tech_note09186a008
 		}
 		elseif (count ($port_ids) == 1) // update only single-socket ports
 		{
-			commitUpdatePort ($object_id, $port_ids[0], $port['name'], $port_type, $port['label'], $port['l2address']);
+			commitUpdatePort ($port_ids[0], $port['name'], $port_type, $port['label'], $port['l2address']);
 			$updated_count++;
 		}
 	}

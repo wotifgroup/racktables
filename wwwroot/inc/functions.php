@@ -4583,6 +4583,13 @@ function formatLinkedPort ($port_info, $a_class = '')
 		);
 }
 
+// return a comparison function to be used for sorting 
+function buildNatCmpFunction ($key) {
+	return function ($a, $b) use ($key) {
+		return strnatcmp($a[$key], $b[$key]);
+	};
+}
+
 function compareDecomposedPortNames ($porta, $portb)
 {
 	$ret = 0;

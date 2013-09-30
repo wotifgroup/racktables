@@ -22,11 +22,13 @@
 		WS-C2950G-24-DC (#981), WS-C3560GV2-48TS (#983), WS-C2950SX-24 (#991),
 		HP ProCurve J9028B (#941), J9022A (#767), Netgear GS724TP (#1001),
 		TL-SL5428E (#1015) by Mark Wilkinson;
+		Cisco WS-C6509-E (#338), WS-C4503 (#528), 7206VXR (#483), HP J8698A (#351),
 		Netgear FS726TP (#859) by Aaron Dummer
 	update: port link popup now has asset no search field (#949) by Thomas Uhde
 	update: searches now examine 'dictionary' attributes (#1003)
 	update: exclude some elements when printing to paper (#464)
 	update: add resource pool info to the Virtual Resources cluster portlet (#915)
+	update: display ports & IPs of contained objects (#797)
 	new feature: port tracing (#333)
 	new feature: bulk selection and deslection of object rackspace checkboxes by Matthew Kelch
 0.20.5 2013-06-23
