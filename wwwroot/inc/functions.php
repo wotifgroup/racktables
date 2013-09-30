@@ -1018,11 +1018,10 @@ function findAllEndpoints ($object_id, $fallback = '')
 	foreach (getAttrValues ($object_id) as $record)
 		if ($record['id'] == 3 && strlen ($record['value'])) // FQDN
 			return array ($record['value']);
-	$regular = array();
-	foreach (getObjectIPv4AllocationList ($object_id) as $ip_bin => $alloc)
+	$regular = array ();
+	foreach (getObjectIPAllocationList ($object_id) as $alloc)
 		if ($alloc['type'] == 'regular')
-			$regular[] = ip4_format ($ip_bin);
-	// FIXME: add IPv6 allocations to this list
+			$regular[] = ip_format ($alloc['ip']);
 	if (!count ($regular) && strlen ($fallback))
 		return array ($fallback);
 	return $regular;

@@ -114,7 +114,7 @@ function trigger_ip ()
 
 function trigger_natv4 ()
 {
-	if (!count (getObjectIPv4AllocationList (getBypassValue())))
+	if (!count (getObjectIPvNAllocationList (getBypassValue(), 4)))
 		return '';
 	return considerConfiguredConstraint (spotEntity ('object', getBypassValue()), 'IPV4NAT_LISTSRC') ? 'std' : '';
 }
