@@ -3503,6 +3503,16 @@ function commitDeleteChapter ($chapter_no = 0)
 	usePreparedDeleteBlade ('Chapter', array ('id' => $chapter_no, 'sticky' => 'no'));
 }
 
+function getDictionaryEntry ($dict_key)
+{
+	$result = usePreparedSelectBlade
+	(
+		'SELECT * FROM Dictionary WHERE dict_key = ?',
+		array ($dict_key)
+	);
+	return $result->fetch (PDO::FETCH_ASSOC);
+}
+
 // This is a dictionary accessor. We perform link rendering, so the user sees
 // nice <select> drop-downs.
 function readChapter ($chapter_id = 0, $style = '')

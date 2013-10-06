@@ -2033,6 +2033,12 @@ $known_devices = array // key is system OID w/o "enterprises" prefix
 		'text' => 'WS-C3560G-48TS: 48 RJ-45/10-100-1000T(X) + 4 SFP/1000',
 		'processors' => array ('catalyst-chassis-49-to-52-1000SFP', 'catalyst-chassis-any-1000T'),
 	),
+	'9.1.619' => array
+	(
+		'dict_key' => 279,
+		'text' => 'Cisco 2801 ISR: 2 RJ-45/10-100TX + 4 module bays',
+		'modular' => TRUE,
+	),
 	'9.1.626' => array
 	(
 		'dict_key' => 147,
@@ -3034,40 +3040,46 @@ $known_devices = array // key is system OID w/o "enterprises" prefix
 global $known_modules;
 $known_modules = array
 (
+	'2801ISR_motherboard' => array
+	(
+		'pattern' => '@^C2801 Motherboard with 2 Fast Ethernet$@',
+		'processors' => array ('catalyst-chassis-any-100TX'),
+		'assign_to_origin' => TRUE,
+	),
 	'J8702A' => array
 	(
 		'pattern' => '@^ProCurve J8702A .+ Module$@',
 		'dict_key' => 1628,
 		'text' => 'J8702A: 24 RJ-45/10-100-1000T(X) PoE',
-		'processors' => array ('procurve-module-1000T')
+		'processors' => array ('procurve-module-1000T'),
 	),
 	'J8705A' => array
 	(
 		'pattern' => '@^ProCurve J8705A .+ Module$@',
 		'dict_key' => 1629,
 		'text' => 'J8705A: 20 RJ-45/10-100-1000T(X) PoE + 4 SFP',
-		'processors' => array ('procurve-module-21-to-24-1000SFP', 'procurve-module-1000T')
+		'processors' => array ('procurve-module-21-to-24-1000SFP', 'procurve-module-1000T'),
 	),
 	'J8706A' => array
 	(
 		'pattern' => '@^ProCurve J8706A .+ Module$@',
 		'dict_key' => 1630,
 		'text' => 'J8706A: 24 SFP',
-		'processors' => array ('procurve-module-1000SFP')
+		'processors' => array ('procurve-module-1000SFP'),
 	),
 	'J8707A' => array
 	(
 		'pattern' => '@^ProCurve J8707A .+ Module$@',
 		'dict_key' => 1631,
 		'text' => 'J8707A: 4 X2/10000',
-		'processors' => array ('procurve-module-CX4')
+		'processors' => array ('procurve-module-CX4'),
 	),
 	'J8708A' => array
 	(
 		'pattern' => '@^ProCurve J8708A .+ Module$@',
 		'dict_key' => 1632,
 		'text' => 'J8708A: 4 CX4/10000',
-		'processors' => array ('procurve-module-X2')
+		'processors' => array ('procurve-module-X2'),
 	),
 	'J8726A' => array
 	(
@@ -3080,47 +3092,47 @@ $known_modules = array
 		'pattern' => '@^ProCurve J9307A .+ Module$@',
 		'dict_key' => 1633,
 		'text' => 'J9307A: 24 RJ-45/10-100-1000T(X) PoE+',
-		'processors' => array ('procurve-module-1000T')
+		'processors' => array ('procurve-module-1000T'),
 	),
 	'J9308A' => array
 	(
 		'pattern' => '@^ProCurve J9308A .+ Module$@',
 		'dict_key' => 1634,
 		'text' => 'J9308A: 20 RJ-45/10-100-1000T(X) PoE+ + 4 SFP',
-		'processors' => array ('procurve-module-21-to-24-1000SFP', 'procurve-module-1000T')
+		'processors' => array ('procurve-module-21-to-24-1000SFP', 'procurve-module-1000T'),
 	),
 	'J8709A' => array
 	(
 		'pattern' => '@^ProCurve J8709A .+ Module$@',
 		'dict_key' => 1635,
 		'text' => 'J8709A: 4 SFP+',
-		'processors' => array ('procurve-module-10000SFP+')
+		'processors' => array ('procurve-module-10000SFP+'),
 	),
 	'J9478A' => array
 	(
 		'pattern' => '@^ProCurve J9478A .+ Module$@',
 		'dict_key' => 1636,
 		'text' => 'J9478A: 24 RJ-45/10-100 PoE+',
-		'processors' => array ('procurve-module-100TX')
+		'processors' => array ('procurve-module-100TX'),
 	),
 	'NPE-G2' => array
 	(
 		'pattern' => '@^NPE-G2@',
-		'dict_key' => 2044,
+		'dict_key' => 2105,
 		'text' => 'NPE-G2: processing engine',
 		'processors' => array ('catalyst-chassis-1-to-3-combo-1000SFP', 'catalyst-chassis-any-1000T'),
 	),
 	'WS-X4515' => array
 	(
 		'pattern' => '@^WS-X4515@',
-		'dict_key' => 2042,
+		'dict_key' => 2103,
 		'text' => 'WS-X4515: supervisor module',
 		'processors' => array ('catalyst-chassis-any-1000GBIC'),
 	),
 	'WS-X6K-SUP2-2GE' => array
 	(
 		'pattern' => '@^WS-X6K-S(2|2U)-(P|MS)FC2@',
-		'dict_key' => 2041,
+		'dict_key' => 2102,
 		'text' => 'WS-X6K-SUP2-2GE: supervisor module',
 		'processors' => array ('catalyst-module-sup-g1-1000SFP', 'catalyst-module-sup-g2-1000SFP'),
 	),
@@ -3141,7 +3153,7 @@ $known_modules = array
 	'WS-X4548-GB-RJ45' => array
 	(
 		'pattern' => '@^WS-X4548-GB-RJ45@',
-		'dict_key' => 2043,
+		'dict_key' => 2104,
 		'text' => 'WS-X4548-GB-RJ45: 48 RJ-45/10-100-1000T(X)',
 		'processors' => array ('catalyst-chassis-any-1000T'),
 	),
@@ -3274,6 +3286,20 @@ $swtype_pcre = array
 	'/^Dell Force10 OS\b.*\bApplication Software Version: 8(\.\d+){3}/' => 1594,
 );
 
+global $chapter_to_objtype_map;
+$chapter_to_objtype_map = array
+(
+	11 => 4,
+	12 => 8,
+	17 => 7,
+	18 => 5,
+	24 => 798,
+	25 => 965,
+	26 => 1055,
+	27 => 2,
+	38 => 1787,
+);
+
 function updateStickerForCell ($cell, $attr_id, $new_value)
 {
 	if
@@ -3319,39 +3345,18 @@ function checkPIC ($port_type_id)
 }
 
 // Recursive function handles sub-modules
-function addModules ($parent_id, $object_id = 0, $module_key = NULL)
+function addModules ($parent_id, $object_id, $module_key = NULL)
 {
 	$self = __FUNCTION__;
-	global $known_modules, $iftable_processors, $snmp_data, $parent_name;
+	global $chapter_to_objtype_map, $known_modules, $iftable_processors, $snmp_data, $objectInfo;
 	$count = count ($snmp_data['entPhysicalContainedIn']);
 	$children = array_keys ($snmp_data['entPhysicalContainedIn'], $parent_id);
 	foreach ($children as $id)
 	{
 		// it should be added as a port
 		if (array_key_exists ($id, $snmp_data['entToIfMapping']))
-		{
-			$ifId = $snmp_data['entToIfMapping'][$id];
-			foreach ($known_modules[$module_key]['processors'] as $processor_name)
-			{
-				$pattern = $iftable_processors[$processor_name]['pattern'];
-				$replacement = $iftable_processors[$processor_name]['replacement'];
-				$newname = preg_replace ($iftable_processors[$processor_name]['pattern'], $iftable_processors[$processor_name]['replacement'], ${snmp_data}['entPhysicalName'][$id], 1, $count);
-				if ($newname === NULL)
-				{
-					showError ('PCRE pattern error, terminating');
-					break;
-				}
-				if (!$count)
-					continue; // try next processor on current port
-				$newlabel = preg_replace ($iftable_processors[$processor_name]['pattern'], $iftable_processors[$processor_name]['label'], $snmp_data['entPhysicalName'][$id], 1, $count);
-				checkPIC ($iftable_processors[$processor_name]['dict_key']);
-				// By default, the 'skip_macs' key of the known_switch_modules array doesn't exist.  If it does exist, it can be assumed that it's true.
-				$mac = (isset ($known_modules[$module_key]['skip_macs'])) ? NULL : $snmp_data['ifPhysAddress'][$ifId];
-				commitAddPort ($object_id, $newname, $iftable_processors[$processor_name]['dict_key'], $newlabel, $mac);
-				if (!$iftable_processors[$processor_name]['try_next_proc']) // done with this port
-					break;
-			}
-		}
+			addModulePort ($id, $object_id, $module_key);
+
 		// it should be added as an object
 		foreach ($known_modules as $key => $attr)
 		{
@@ -3359,6 +3364,15 @@ function addModules ($parent_id, $object_id = 0, $module_key = NULL)
 			if (preg_match ($attr['pattern'], $snmp_data['entPhysicalDescr'][$id]) or preg_match ($attr['pattern'], $snmp_data['entPhysicalModelName'][$id]))
 			{
 				$module_key = $key;
+
+				// sometimes ports are registered to a child object such as a motherboard
+				// in such cases, we want them assigned to the origin object itself (example: Cisco 2801 ISR)
+				if (isset ($known_modules[$module_key]['assign_to_origin']))
+				{
+					addModulePort ($id, $object_id, $module_key);
+					break;
+				}
+
 				showSuccess ($known_modules[$module_key]['text']);
 
 				// entPhysicalName contains the name of the slot in most cases.
@@ -3375,7 +3389,11 @@ function addModules ($parent_id, $object_id = 0, $module_key = NULL)
 					$module_name = $snmp_data['entPhysicalName'][$id];
 				}
 
-				$child_object_id = commitAddObject ("${parent_name} - module ${module_name}", NULL, 8, NULL);
+				// determine object type
+				$dict_entry = getDictionaryEntry ($attr['dict_key']);
+				$objtype_id = $chapter_to_objtype_map[$dict_entry['chapter_id']];
+
+				$child_object_id = commitAddObject ("${objectInfo['name']} - module ${module_name}", NULL, $objtype_id, NULL);
 				$child_objectInfo = spotEntity ('object', $child_object_id);
 				$child_objectInfo['attrs'] = getAttrValues ($child_object_id);
 				updateStickerForCell ($child_objectInfo, 1, $snmp_data['entPhysicalSerialNum'][$id]); // OEM S/N 1
@@ -3421,10 +3439,37 @@ function addModules ($parent_id, $object_id = 0, $module_key = NULL)
 	}
 }
 
+function addModulePort ($ent_id, $object_id, $module_key)
+{
+	global $known_modules, $iftable_processors, $snmp_data;
+	$ifId = $snmp_data['entToIfMapping'][$ent_id];
+	foreach ($known_modules[$module_key]['processors'] as $processor_name)
+	{
+		$pattern = $iftable_processors[$processor_name]['pattern'];
+		$replacement = $iftable_processors[$processor_name]['replacement'];
+		$newname = preg_replace ($iftable_processors[$processor_name]['pattern'], $iftable_processors[$processor_name]['replacement'], ${snmp_data}['entPhysicalName'][$ent_id], 1, $count);
+		if ($newname === NULL)
+		{
+			showError ('PCRE pattern error, terminating');
+			break;
+		}
+		if (!$count)
+			continue; // try next processor on current port
+		$newlabel = preg_replace ($iftable_processors[$processor_name]['pattern'], $iftable_processors[$processor_name]['label'], $snmp_data['entPhysicalName'][$ent_id], 1, $count);
+		checkPIC ($iftable_processors[$processor_name]['dict_key']);
+		// By default, the 'skip_macs' key of the known_switch_modules array doesn't exist.  If it does exist, it can be assumed that it's true.
+		$mac = (isset ($known_modules[$module_key]['skip_macs'])) ? NULL : $snmp_data['ifPhysAddress'][$ifId];
+		commitAddPort ($object_id, $newname, $iftable_processors[$processor_name]['dict_key'], $newlabel, $mac);
+		if (!$iftable_processors[$processor_name]['try_next_proc']) // done with this port
+			break;
+	}
+}
+
 $msgcode['doSNMPmining']['ERR1'] = 161;
 $msgcode['doSNMPmining']['ERR2'] = 162;
 function doSNMPmining ($object_id, $snmpsetup)
 {
+	global $objectInfo;
 	$objectInfo = spotEntity ('object', $object_id);
 	$objectInfo['attrs'] = getAttrValues ($object_id);
 	$endpoints = findAllEndpoints ($object_id, $objectInfo['name']);
@@ -3440,18 +3485,18 @@ function doSNMPmining ($object_id, $snmpsetup)
 	case 965:  // Wireless
 	case 1503: // Network chassis
 		$device = new RTSNMPDevice ($endpoints[0], $snmpsetup);
-		return doGenericSNMPmining ($objectInfo, $device);
+		return doGenericSNMPmining ($device);
 	case 2:
 		$device = new APCPowerSwitch ($endpoints[0], $snmpsetup);
-		return doPDUSNMPmining ($objectInfo, $device);
+		return doPDUSNMPmining ($device);
 	}
 }
 
 $msgcode['doGenericSNMPmining']['ERR3'] = 188;
 $msgcode['doGenericSNMPmining']['ERR4'] = 189;
-function doGenericSNMPmining ($objectInfo, $device)
+function doGenericSNMPmining ($device)
 {
-	global $known_devices, $iftable_processors;
+	global $objectInfo, $known_devices, $iftable_processors;
 
 	if (FALSE === ($sysObjectID = $device->snmpget ('sysObjectID.0')))
 		return showFuncMessage (__FUNCTION__, 'ERR3'); // // fatal SNMP failure
@@ -3795,9 +3840,8 @@ function doGenericSNMPmining ($objectInfo, $device)
 	{
 		// this is a modular device
 		// TODO: put the entire mining operation inside a single transaction (not possible now because commitAddPort() LOCKs/UNLOCKs the Port table which auto-commits any open transactions)
-		global $snmp_data, $parent_name;
+		global $snmp_data;
 		$snmp_data = array ();
-		$parent_name = $objectInfo['name'];
 		foreach ($device->snmpwalkoid ('mib-2.47.1.1.1.1.4') as $raw_key => $raw_value)
 		{
 			$key = substr ($raw_key, strlen ('SNMPv2-SMI::mib-2.47.1.1.1.1.4.'));
@@ -3954,9 +3998,9 @@ function doGenericSNMPmining ($objectInfo, $device)
 	return buildRedirectURL (NULL, 'ports');
 }
 
-function doPDUSNMPmining ($objectInfo, $switch)
+function doPDUSNMPmining ($switch)
 {
-	global $known_APC_SKUs;
+	global $objectInfo, $known_APC_SKUs;
 	if (FALSE !== ($dict_key = array_search ($switch->getHWModel(), $known_APC_SKUs)))
 		updateStickerForCell ($objectInfo, 2, $dict_key);
 	updateStickerForCell ($objectInfo, 1, $switch->getHWSerial());

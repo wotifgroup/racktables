@@ -2157,7 +2157,7 @@ $dictionary = array
 	2100 => array ('chapter_id' => 12, 'dict_value' => 'Cisco (blade)%GPASS%WS-X6K-SUP1-2GE'),
 	2101 => array ('chapter_id' => 12, 'dict_value' => 'Cisco (blade)%GPASS%WS-X6K-SUP1A-2GE'),
 	2102 => array ('chapter_id' => 12, 'dict_value' => 'Cisco (blade)%GPASS%WS-X6K-SUP2-2GE'),
-	2103=> array ('chapter_id' => 12, 'dict_value' => 'Cisco (blade)%GPASS%WS-X4515'),
+	2103 => array ('chapter_id' => 12, 'dict_value' => 'Cisco (blade)%GPASS%WS-X4515'),
 	2104 => array ('chapter_id' => 12, 'dict_value' => 'Cisco (blade)%GPASS%WS-X4548-GB-RJ45'),
 	2105 => array ('chapter_id' => 17, 'dict_value' => 'Cisco (blade)%GPASS%NPE-G2'),
 

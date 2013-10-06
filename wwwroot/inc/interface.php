@@ -1339,10 +1339,11 @@ function renderObject ($object_id)
 				$sep = '';
 				foreach ($port['links'] as $linkinfo)
 				{
+					$trace_link = ($sep == '') ? '&nbsp;' . getPopupLink ('traceroute', array ('port' => $port['id']), 'findlink', 'find', '', 'Trace this port') : '';
 					echo $sep;
 					$sep = "</tr>\n<tr $tr_class><td colspan=4></td>";
 					echo '<td class=tdleft>'.formatLoggedSpan ($port['last_log'], formatPortLink ($linkinfo['remote_object_id'], $linkinfo['remote_object_name'], $linkinfo['remote_id'], NULL)).'</td>';
-					echo '<td class=tdleft>'.formatLoggedSpan ($port['last_log'], $linkinfo['remote_name'], 'underline').'</td>';
+					echo '<td class=tdleft>'.formatLoggedSpan ($port['last_log'], $linkinfo['remote_name'], 'underline').$trace_link.'</td>';
 					echo "<td class=tdleft><span class='rsvtext $editable id-".$linkinfo['link_id']." op-upd-reservation-cable'>".$linkinfo['cableid'].'</span></td>';
 				}
 			}
