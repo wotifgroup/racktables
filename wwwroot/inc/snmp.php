@@ -501,6 +501,24 @@ $iftable_processors['nexus-any-10000SFP+'] = array
 	'try_next_proc' => FALSE,
 );
 
+$iftable_processors['cisco-router-chassis-any-100TX'] = array
+(
+	'pattern' => '@^FastEthernet([[:digit:]]+/)?([[:digit:]]+)$@',
+	'replacement' => 'fe\\1\\2',
+	'dict_key' => 19,
+	'label' => 'FE \\1\\2',
+	'try_next_proc' => FALSE,
+);
+
+$iftable_processors['cisco-router-chassis-any-1000T'] = array
+(
+	'pattern' => '@^GigabitEthernet([[:digit:]]+/)?([[:digit:]]+)$@',
+	'replacement' => 'ge\\1\\2',
+	'dict_key' => 24,
+	'label' => 'GE \\1\\2',
+	'try_next_proc' => FALSE,
+);
+
 $iftable_processors['ftos-any-1000T'] = array
 (
 	'pattern' => '@^GigabitEthernet 0/(\d+)$@',
@@ -2009,6 +2027,12 @@ $known_devices = array // key is system OID w/o "enterprises" prefix
 		'text' => 'Cisco 878 ISR: 4 RJ-45/10-100TX',
 		'processors' => array ('catalyst-chassis-any-100TX'),
 	),
+	'9.1.577' => array
+	(
+		'dict_key' => 281,
+		'text' => 'Cisco 2821 ISR: 2 RJ-45/10-100-1000T(X) + 6 module bays',
+		'modular' => TRUE,
+	),
 	'9.1.614' => array
 	(
 		'dict_key' => 175,
@@ -3040,10 +3064,16 @@ $known_devices = array // key is system OID w/o "enterprises" prefix
 global $known_modules;
 $known_modules = array
 (
-	'2801ISR_motherboard' => array
+	'2801_ISR_motherboard' => array
 	(
-		'pattern' => '@^C2801 Motherboard with 2 Fast Ethernet$@',
-		'processors' => array ('catalyst-chassis-any-100TX'),
+		'pattern' => '@^C2801 Motherboard@',
+		'processors' => array ('cisco-router-chassis-any-100TX'),
+		'assign_to_origin' => TRUE,
+	),
+	'2821_ISR_motherboard' => array
+	(
+		'pattern' => '@^c2821 Motherboard@',
+		'processors' => array ('cisco-router-chassis-any-1000T'),
 		'assign_to_origin' => TRUE,
 	),
 	'J8702A' => array
@@ -3447,7 +3477,7 @@ function addModulePort ($ent_id, $object_id, $module_key)
 	{
 		$pattern = $iftable_processors[$processor_name]['pattern'];
 		$replacement = $iftable_processors[$processor_name]['replacement'];
-		$newname = preg_replace ($iftable_processors[$processor_name]['pattern'], $iftable_processors[$processor_name]['replacement'], ${snmp_data}['entPhysicalName'][$ent_id], 1, $count);
+		$newname = preg_replace ($iftable_processors[$processor_name]['pattern'], $iftable_processors[$processor_name]['replacement'], $snmp_data['entPhysicalName'][$ent_id], 1, $count);
 		if ($newname === NULL)
 		{
 			showError ('PCRE pattern error, terminating');
@@ -3890,7 +3920,7 @@ function doGenericSNMPmining ($device)
 					if (strlen ($bytestr) == 1)
 						$addrbytes[$bidx] = '0' . $bytestr;
 			}
-			elseif (preg_match ('/^([0-9a-f]{2}){6}/i', $value)) // xx yy zz xx yy zz
+			elseif (preg_match ('^[0-9a-f]{1,2}( [0-9a-f]{1,2}){5}/i', $value)) // xx yy zz xx yy zz
 				$addrbytes = explode (' ', substr ($value, -17));
 			elseif (preg_match ('/22[0-9a-f]{12}22$/', bin2hex ($value))) // "??????"
 				$addrbytes = array (substr (bin2hex ($value), -14, 12));
@@ -3903,7 +3933,6 @@ function doGenericSNMPmining ($device)
 		// map entPhysicalIndex to ifIndex for MAC addresses association
 		// first try to use entAliasMappingIdentifier (some devices don't support it)
 		if ($entToIfMapping_raw = @$device->snmpwalkoid ('mib-2.47.1.3.2.1.2'))
-		{
 			foreach ($entToIfMapping_raw as $key => $value)
 			{
 				// find the entID and map it to the ifID
@@ -3913,7 +3942,6 @@ function doGenericSNMPmining ($device)
 				$iid = substr ($value, strrpos ($value, '.') + 1);
 				$snmp_data['entToIfMapping'][$eid] = $iid; 
 			}
-		}
 		else
 		{
 			// entAliasMappingIdentifier isn't available, use entPhysicalName
