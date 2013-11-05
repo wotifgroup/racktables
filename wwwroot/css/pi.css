@@ -898,3 +898,7 @@ a.noclick {
 	font-size: 12px;
 	line-height: 1.5em;
 }
+
+.port-btns a {
+	margin: 0px 1em;
+}

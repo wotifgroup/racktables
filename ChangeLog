@@ -2,7 +2,7 @@
 	new feature: port tracing (#333)
 0.20.6
 	bugfix: "sshnokey" gateway had a bug
-	bugfix: SLB config was generated incrorrectly when multiple 
+	bugfix: SLB config was generated incrorrectly when multiple
 		rspools were linked with the same balancer-vsg pair
 	bugfix: change blade orientation of Cisco 6509-V-E (#985)
 	bugfix: default values of some LDAP options weren't being used
