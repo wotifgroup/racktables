@@ -397,7 +397,7 @@ END
 		else
 		{
 			echo '<label>' . $port_info['iif_name'] . ' ';
-			printSelect (getExistingPortTypeOptions ($port_info['id']), array ('class' => 'porttype', 'name' => 'port_type'), $type_local);
+			printSelect (getExistingPortTypeOptions ($port_info), array ('class' => 'porttype', 'name' => 'port_type'), $type_local);
 			echo '</label>';
 		}
 		echo ' &mdash; ';
@@ -409,7 +409,7 @@ END
 		else
 		{
 			echo '<label>' . $remote_port_info['iif_name'] . ' ';
-			printSelect (getExistingPortTypeOptions ($remote_port_info['id']), array ('class' => 'porttype', 'name' => 'remote_port_type'), $type_remote);
+			printSelect (getExistingPortTypeOptions ($remote_port_info), array ('class' => 'porttype', 'name' => 'remote_port_type'), $type_remote);
 			echo '</label>';
 		}
 		echo ' ' . formatPort ($remote_port_info);
