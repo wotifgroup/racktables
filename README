@@ -99,7 +99,7 @@ and initialize the application.
 *                                                     *
 *******************************************************
 
-*** Upgrading to 0.20.6 ***
+*** Upgrading to 0.21.0 ***
 
 Database triggers are used for some data consistency measures.  The database
 user account must have the 'TRIGGER' privilege, which was introduced in

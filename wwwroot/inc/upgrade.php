@@ -1446,7 +1446,7 @@ BEGIN
   END IF;
 END;
 ";
-			$query[] = "UPDATE Config SET varvalue = '0.20.6' WHERE varname = 'DB_VERSION'";
+			$query[] = "UPDATE Config SET varvalue = '0.21.0' WHERE varname = 'DB_VERSION'";
 			break;
 		case 'dictionary':
 			$query = reloadDictionary();
