@@ -478,7 +478,7 @@ function renderPopupPortSelector()
 	echo '<td class="tdleft"><label>Asset tag:<br><input type=text size=8 name="filter-asset_no" value="' . htmlspecialchars ($filter['asset_no'], ENT_QUOTES) . '"></label></td>';
 	echo '<td class="tdleft"><label>Port name:<br><input type=text size=6 name="filter-port" value="' . htmlspecialchars ($filter['ports'], ENT_QUOTES) . '"></label></td></tr>';
 	echo '<td class="tdleft" valign="bottom"><label><input type=checkbox name="in_rack"' . ($in_rack ? ' checked' : '') . '>Nearest racks</label></td>';
-	echo '<td class="tdleft" vlaign="bottom"><label><input type=checkbox name="linked"'. ($linked ? ' checked' : '') .'>Include linked ports</label></td></tr>';
+	echo '<td class="tdleft" valign="bottom"><label><input type=checkbox name="linked"'. ($linked ? ' checked' : '') .'>Include linked ports</label></td></tr>';
 	echo '<tr><td colspan=2 valign="bottom"><input type=submit value="show ports"></td></tr>';
 	echo '</table>';
 	finishPortlet();
@@ -580,7 +580,7 @@ function renderPopupPatchPanelSelector ()
 	echo '<input type=hidden name="object_id" value="' . $object_id . '">';
 	echo '<table border=0 align="center" valign="bottom"><tr>';
 	echo '<td class="tdleft"><label>Panel name:<br><input type=text size=10 name="filter-name" value="' . htmlspecialchars ($filter['name'], ENT_QUOTES) . '"></label></td></tr>';
-	echo '<tr><td class="tdleft" vlaign="bottom"><label><input type=checkbox name="linked"'. ($linked ? ' checked' : '') .'>Include panels already linked</label></td></tr>';
+	echo '<tr><td class="tdleft" valign="bottom"><label><input type=checkbox name="linked"'. ($linked ? ' checked' : '') .'>Include panels already linked</label></td></tr>';
 	echo '<tr><td valign="bottom"><input type=submit value="Show panels"></td></tr>';
 	echo '</table>';
 	finishPortlet();
