@@ -105,10 +105,11 @@ function trigger_isloadbalancer ()
 
 function trigger_ip ()
 {
-	if (count (getObjectIPAllocationList (getBypassValue())))
+    // Force the display of the IP tab on objects even when addresses are not allocated.
+	// if (count (getObjectIPAllocationList (getBypassValue())))
 		return 'std';
 	// Only hide the tab, if there are no addresses allocated.
-	return considerConfiguredConstraint (spotEntity ('object', getBypassValue()), 'IPV4OBJ_LISTSRC') ? 'std' : '';
+	// return considerConfiguredConstraint (spotEntity ('object', getBypassValue()), 'IPV4OBJ_LISTSRC') ? 'std' : '';
 }
 
 function trigger_natv4 ()
